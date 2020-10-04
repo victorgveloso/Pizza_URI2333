@@ -3,6 +3,7 @@
 //
 #include "../src/Pizza.h"
 #include <gtest/gtest.h>
+#include <fstream>
 
 TEST(PizzaTest, FirstTest) {
     auto *p1 = new Pizza();
@@ -32,4 +33,24 @@ TEST(PizzaTest, SinglePieceTest) {
     int v[] = {4};
     auto p = Pizza(1, v);
     ASSERT_EQ(p.melhorRecorte(), 4);
+}
+TEST(PizzaTest,UDebugTest1) {
+    std::ifstream inFile;
+    inFile.open("input-test1.txt");
+    ASSERT_TRUE(inFile);
+
+    int tamanho;
+    inFile >> tamanho;
+    int fatias[tamanho];
+    for (int i = 0; i < tamanho; ++i) {
+        inFile >> fatias[i];
+    }
+
+    auto p = Pizza(tamanho,fatias);
+    ASSERT_EQ(p.melhorRecorte(), 25277);
+}
+TEST(PizzaTest,UDebugTest2) {
+    int v[] = {10,-7,5,-7,5,7};
+    auto p = Pizza(6, v);
+    ASSERT_EQ(p.melhorRecorte(), 22);
 }
