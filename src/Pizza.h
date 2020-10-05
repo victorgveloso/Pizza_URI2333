@@ -25,8 +25,12 @@ public:
     Pizza(int tamanho, int *fatias) : tamanho(tamanho), fatias(fatias) {}
 
     int melhorRecorte() {
+        auto pizzaInversa = Pizza(tamanho, new int[tamanho]);
+        for (int i = 0; i < tamanho; ++i) {
+            pizzaInversa.fatias[i] = -fatias[i];
+        }
         auto sol = melhorRecorte(0, tamanho - 1);
-        return tamanho == 1 ? sol->ssm : std::max(sol->ssm, sol->pref + sol->suf);
+        return std::max(sol->ssm, sol->total + pizzaInversa.melhorRecorte(0, tamanho - 1)->ssm);
     }
 
     Solucao *melhorRecorte(int ini, int fim);

@@ -36,7 +36,7 @@ TEST(PizzaTest, SinglePieceTest) {
 }
 TEST(PizzaTest,UDebugTest1) {
     std::ifstream inFile;
-    inFile.open("input-test1.txt");
+    inFile.open("../../input-test1.txt");
     ASSERT_TRUE(inFile);
 
     int tamanho;
